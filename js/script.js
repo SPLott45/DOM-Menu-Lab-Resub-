@@ -92,7 +92,7 @@ function handleClick(event) {
     for(let i = 0; i < linkObject.length; i++) {
       let newv = document.createElement('a');
       newv.setAttribute('href', linkObject[i].href);
-      newv.textContent = subMenuEl[i].text;
+      newv.textContent = linkObject[i].text;
       subMenuEl.appendChild(newv)
     }
  } 
@@ -103,6 +103,19 @@ function handleClick(event) {
   subMenuEl.style.top = '0'
 };
 }
+
+subMenuEl.addEventListener('click', handleSubClick); 
+
+function handleSubClick(event) {
+  event.preventDefault();
+  if(event.target.tagName !== "A") {
+    return
+    };
+    console.log(event.target.textContent);
+    showingSubMenu = false;
+    subMenuEl.style.top = '0';
+  
+  }; 
 
   // if(topMenuLinks === 'click') {
   //   topMenuLinks.classList.add('active');
