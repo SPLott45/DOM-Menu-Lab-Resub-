@@ -59,7 +59,7 @@ let showingSubMenu = false;
 
 //may need to store this event listener to a const. variable called btn
 topMenuEl.addEventListener('click', handleClick);
-
+let linkObject;
 function handleClick(event) {
   event.preventDefault();
   // console.log(event.target.tagName);
@@ -78,14 +78,25 @@ function handleClick(event) {
     topMenuLinks[i].classList.remove('active');
   }
   event.target.classList.add('active');
-  let linkObject; 
+  // let linkObject; 
   for(let i = 0; i < menuLinks.length; i++) {
     if(event.target.innerText.toLowerCase() === menuLinks[i].text) {
       if(menuLinks[i].subLinks) {
         linkObject = menuLinks[i].subLinks;
         showingSubMenu = true;
-      } else showingSubMenu = false;
+      } else {
+        showingSubMenu = false;
+        //let contentOfClick = event.target.textContent;
+        mainEl.innerHTML = `<h1>${event.target.textContent}</h1>`;
+      } 
     }
+  }
+  if(showingSubMenu = true) {
+    buildSubMenu(linkObject);
+    subMenuEl.style.top = '100%'
+  } else if(showingSubMenu = false) {
+    subMenuEl.style.top = '0'
+  };
   }
   function buildSubMenu(linkObject) {
     subMenuEl.innerHTML = '';
@@ -96,13 +107,7 @@ function handleClick(event) {
       subMenuEl.appendChild(newv)
     }
  } 
- if(showingSubMenu = true) {
-  buildSubMenu(linkObject);
-  subMenuEl.style.top = '100%'
-} else if(showingSubMenu = false) {
-  subMenuEl.style.top = '0'
-};
-}
+ 
 
 subMenuEl.addEventListener('click', handleSubClick); 
 
@@ -118,7 +123,9 @@ function handleSubClick(event) {
       topMenuLinks[i].classList.remove('active');
   }; 
   let contentOfClick = event.target.textContent;
-  mainEl.innerHTML = `<h1>${contentOfClick}</h1>`
+  mainEl.innerHTML = `<h1>${contentOfClick}</h1>`;
+  // if(event.target.tagName = "about") {
+  //   console.log(event.target.textContent.mainEl.innerHTML = '<h1>about</h1>'
 }
 
   // if(topMenuLinks === 'click') {
