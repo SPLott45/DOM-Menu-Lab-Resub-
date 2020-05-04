@@ -114,8 +114,12 @@ function handleSubClick(event) {
     console.log(event.target.textContent);
     showingSubMenu = false;
     subMenuEl.style.top = '0';
-  
+  for(let i = 0; i < topMenuLinks.length; i++) {
+      topMenuLinks[i].classList.remove('active');
   }; 
+  let contentOfClick = event.target.textContent;
+  mainEl.innerHTML = `<h1>${contentOfClick}</h1>`
+}
 
   // if(topMenuLinks === 'click') {
   //   topMenuLinks.classList.add('active');
